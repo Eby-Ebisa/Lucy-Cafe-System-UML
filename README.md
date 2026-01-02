@@ -1,4 +1,4 @@
-### 1. Lucy Cafe Food Delivery Diagram
+
 # Lucy Cafe Food Delivery System
 
 ## 🌟 Project Introduction
