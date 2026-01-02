@@ -189,7 +189,7 @@ CREATE TABLE Payments (
     status VARCHAR(20),
     FOREIGN KEY (orderID) REFERENCES Orders(orderID)
 );
-
+```
 ## 🚀 Getting Started
 To implement this system, follow these steps:
 1. **Database Setup**: Execute the SQL script provided in the [Database Schema](#database-schema-sql) section in your MySQL or PostgreSQL environment.
