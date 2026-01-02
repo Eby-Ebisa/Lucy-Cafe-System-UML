@@ -1,6 +1,6 @@
 ```mermaid
 classDiagram
-    %% --- AMU CAMPUS DELIVERY CLASSES ---
+    %% --- CLASSES ---
     class User {
         +int userID
         +string name
@@ -10,6 +10,12 @@ classDiagram
     class Admin {
         +manageMenu()
         +viewReports()
+        +resolveDisputes()
+    }
+
+    class Customer {
+        +string campusRole
+        +placeOrder()
     }
 
     class Student {
@@ -23,32 +29,47 @@ classDiagram
     }
 
     class Driver {
-        +string vehicleID
+        +string vehicleType
         +bool isAvailable
         +markDelivered()
     }
 
     class Order {
         +int orderID
-        +string locationType
-        +bool hasDrinks
-        +checkStudentRestriction()
+        +string destinationType
+        +float totalAmount
+        +checkDrinkRestriction()
+    }
+
+    class FoodItem {
+        +string name
+        +float price
+    }
+
+    class DrinkItem {
+        +string type
+        +bool isAlcoholic
     }
 
     class Payment {
-        +float amount
+        +int transactionID
+        +string provider
         +processCBE()
         +processTelebir()
     }
 
-    %% --- RELATIONSHIPS ---
+    %% --- RELATIONSHIPS & LOGIC ---
     User <|-- Admin
-    User <|-- Student
-    User <|-- Instructor
+    User <|-- Customer
     User <|-- Driver
+    Customer <|-- Student
+    Customer <|-- Instructor
 
-    Student "1" -- "0..*" Order : orders_food_only
-    Instructor "1" -- "0..*" Order : orders_food_and_drinks
-    Order "1" -- "1" Payment : online_payment
+    Customer "1" -- "0..*" Order : places
+    Order "1" *-- "1..*" FoodItem : includes
+    Order "1" *-- "0..*" DrinkItem : includes
+    Order "1" -- "1" Payment : via CBE/Telebir
+    
+    Admin "1" -- "0..*" User : manages
     Driver "1" -- "0..*" Order : delivers_to_AMU
 ```
