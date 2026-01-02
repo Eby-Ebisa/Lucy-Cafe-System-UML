@@ -1,6 +1,7 @@
 ---
 title: Lucy Cafe Food Delivery System
 ---
+```mermaid
 classDiagram
     %% --- CLASSES ---
     class User {
@@ -54,7 +55,7 @@ classDiagram
     Order "1" *-- "1..*" MenuItem : contains
     Order "1" -- "1" Payment : paid_by
     Order "1" -- "0..1" Driver : assigned_to
-
+```
 ---
 title: Delivery Flow (Sequence Diagram)
 ---
