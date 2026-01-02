@@ -136,9 +136,9 @@ stateDiagram-v2
     Delivered --> [*]
     Cancelled --> [*]
 ```
-```mermaid
 
 ### 4. 🗄️ Database ER-D (SQL)
+```mermaid
 erDiagram
     USERS ||--|| STUDENTS : "is a"
     USERS ||--|| INSTRUCTORS : "is a"
