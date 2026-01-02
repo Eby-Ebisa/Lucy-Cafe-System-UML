@@ -55,3 +55,34 @@ classDiagram
     Order "1" *-- "0..*" DrinkItem : includes
     Order "1" -- "1" Payment : via_CBE_Telebir
     Driver "1" -- "0..*" Order : delivers_to_AMU
+
+graph LR
+    %% --- ACTORS ---
+    S((Student))
+    I((Instructor))
+    A((Admin))
+    D((Driver))
+
+    subgraph "Lucy Cafe AMU Delivery System"
+        UC1(Browse Food Menu)
+        UC2(Order Food)
+        UC3(Order Drinks - Instructors Only)
+        UC4(Pay via CBE or Telebir)
+        UC5(Manage Inventory & Users)
+        UC6(Delivery to Dorm/Condo/Office)
+    end
+
+    %% --- CONNECTIONS ---
+    S --- UC1
+    S --- UC2
+    S --- UC4
+    S --- UC6
+
+    I --- UC1
+    I --- UC2
+    I --- UC3
+    I --- UC4
+    I --- UC6
+
+    D --- UC6
+    A --- UC5
