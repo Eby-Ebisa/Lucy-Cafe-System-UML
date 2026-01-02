@@ -136,6 +136,49 @@ stateDiagram-v2
     Delivered --> [*]
     Cancelled --> [*]
 ```
+
+erDiagram
+    USERS ||--|| STUDENTS : "is a"
+    USERS ||--|| INSTRUCTORS : "is a"
+    USERS ||--o{ ORDERS : "places/delivers"
+    ORDERS ||--|| PAYMENTS : "has"
+    ORDERS }o--|{ MENU-ITEMS : "contains"
+
+    USERS {
+        int userID PK
+        string name
+        string email
+        string role
+    }
+    STUDENTS {
+        int userID PK, FK
+        string dormNumber
+        string block
+    }
+    INSTRUCTORS {
+        int userID PK, FK
+        string condoNumber
+        string officeNumber
+    }
+    ORDERS {
+        int orderID PK
+        int customerID FK
+        int driverID FK
+        string status
+        decimal totalAmount
+    }
+    PAYMENTS {
+        int paymentID PK
+        int orderID FK
+        string method
+        string status
+    }
+    MENU-ITEMS {
+        int itemID PK
+        string name
+        decimal price
+        bool isDrink
+    }
 ## 🗄️ Database Schema (SQL)
 Below is the relational database structure derived from the Class Diagram. 
 
