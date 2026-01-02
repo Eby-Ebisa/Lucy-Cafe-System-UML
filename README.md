@@ -180,8 +180,9 @@ erDiagram
         bool isDrink
     }
 ```
-## 🗄️ Database Schema (SQL)
-Below is the relational database structure derived from the Class Diagram. 
+### 🗄️ Database Implementation (SQL)
+<details>
+<summary>Click here to view the SQL Build Script</summary>
 
 ```sql
 -- 1. Users Table (Base for all roles)
@@ -212,7 +213,7 @@ CREATE TABLE MenuItems (
     itemID INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100),
     price DECIMAL(10, 2),
-    isDrink BOOLEAN -- To enforce business logic for students
+    isDrink BOOLEAN 
 );
 
 -- 4. Orders and Payments
