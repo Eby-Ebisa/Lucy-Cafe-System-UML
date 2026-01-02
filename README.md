@@ -136,7 +136,7 @@ stateDiagram-v2
     Delivered --> [*]
     Cancelled --> [*]
 ```
-
+```mermaid
 erDiagram
     USERS ||--|| STUDENTS : "is a"
     USERS ||--|| INSTRUCTORS : "is a"
@@ -179,6 +179,7 @@ erDiagram
         decimal price
         bool isDrink
     }
+```
 ## 🗄️ Database Schema (SQL)
 Below is the relational database structure derived from the Class Diagram. 
 
