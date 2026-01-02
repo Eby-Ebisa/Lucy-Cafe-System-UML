@@ -73,7 +73,7 @@ classDiagram
     Admin "1" -- "0..*" User : manages
     Driver "1" -- "0..*" Order : delivers_to_AMU
 
-
+```
 useCaseDiagram
     actor Student
     actor Instructor
@@ -102,4 +102,3 @@ useCaseDiagram
 
     Driver --> UC6
     Admin --> UC5
-```
