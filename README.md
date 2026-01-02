@@ -1,3 +1,4 @@
+```mermaid
 classDiagram
     %% --- CLASSES WITH PROPERTIES AND METHODS ---
     class User {
@@ -75,3 +76,4 @@ classDiagram
     Order "1" *-- "1..*" MenuItem : contains
     Order "1" -- "1" Payment : requires
     Order "0..*" -- "0..1" Driver : assigned_to
+```
