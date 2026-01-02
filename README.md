@@ -1,79 +1,75 @@
 ```mermaid
 classDiagram
-    %% --- CLASSES WITH PROPERTIES AND METHODS ---
+    %% --- CLASSES ---
     class User {
         +int userID
         +string name
-        +string email
-        +string password
-        +login() bool
-        +logout() void
+        +login()
+    }
+
+    class Admin {
+        +manageMenu()
+        +viewReports()
+        +resolveDisputes()
     }
 
     class Customer {
-        +string deliveryAddress
-        +string phoneNumber
-        +float balance
-        +browseMenu() List
-        +placeOrder() void
-        +rateDriver(int score) void
+        +string campusRole
+        +placeOrder()
+    }
+
+    class Student {
+        +string dormNumber
+        +string block
+    }
+
+    class Instructor {
+        +string condoNumber
+        +string officeNumber
     }
 
     class Driver {
-        +string vehicleDetails
-        +string licensePlate
+        +string vehicleType
         +bool isAvailable
-        +float currentRating
-        +acceptOrder(int orderID) void
-        +updateLocation(string latLong) void
-        +markDelivered() void
-    }
-
-    class Restaurant {
-        +int restaurantID
-        +string name
-        +string menuCategory
-        +bool isOpen
-        +receiveOrder(int orderID) void
-        +prepareFood() void
+        +markDelivered()
     }
 
     class Order {
         +int orderID
-        +datetime orderTime
-        +string status
+        +string destinationType
         +float totalAmount
-        +calculateTotal() float
-        +updateStatus(string newStatus) void
+        +checkDrinkRestriction()
     }
 
-    class MenuItem {
-        +int itemID
+    class FoodItem {
         +string name
         +float price
-        +string ingredients
-        +updatePrice(float newPrice) void
+    }
+
+    class DrinkItem {
+        +string type
+        +bool isAlcoholic
     }
 
     class Payment {
-        +int paymentID
-        +string paymentMethod
-        +string transactionStatus
-        +processPayment() bool
-        +refund() void
+        +int transactionID
+        +string provider
+        +processCBE()
+        +processTelebir()
     }
 
-    %% --- RELATIONSHIPS (UML PROPERTIES) ---
-    
-    %% Inheritance (Generalization)
-    User <|-- Customer : Inherits
-    User <|-- Driver : Inherits
+    %% --- RELATIONSHIPS & LOGIC ---
+    User <|-- Admin
+    User <|-- Customer
+    User <|-- Driver
+    Customer <|-- Student
+    Customer <|-- Instructor
 
-    %% Associations with Multiplicity
     Customer "1" -- "0..*" Order : places
-    Restaurant "1" -- "0..*" MenuItem : offers
-    Restaurant "1" -- "0..*" Order : prepares
-    Order "1" *-- "1..*" MenuItem : contains
-    Order "1" -- "1" Payment : requires
-    Order "0..*" -- "0..1" Driver : assigned_to
+    Order "1" *-- "1..*" FoodItem : includes
+    Order "1" *-- "0..*" DrinkItem : includes
+    Order "1" -- "1" Payment : via CBE/Telebir
+    
+    Admin "1" -- "0..*" User : manages
+    Driver "1" -- "0..*" Order : delivers_to_AMU
 ```
