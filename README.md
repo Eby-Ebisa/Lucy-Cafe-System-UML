@@ -55,7 +55,7 @@ classDiagram
     Order "1" *-- "0..*" DrinkItem : includes
     Order "1" -- "1" Payment : via_CBE_Telebir
     Driver "1" -- "0..*" Order : delivers_to_AMU
-
+```
 graph LR
     %% --- ACTORS ---
     S((Student))
