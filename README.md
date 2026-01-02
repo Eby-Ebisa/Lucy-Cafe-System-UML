@@ -91,3 +91,29 @@ graph LR
     D --- UC6
     A --- UC5
 ```
+
+### 3. Order Lifecycle (State Diagram)
+```mermaid
+stateDiagram-v2
+    [*] --> Pending : Customer places order
+    
+    state Payment_Branch <<choice>>
+    Pending --> Payment_Branch
+    
+    Payment_Branch --> Cancelled : Payment Failed
+    Payment_Branch --> Paid : CBE/Telebir Success
+    
+    Paid --> Preparing : Kitchen receives order
+    Preparing --> ReadyForPickup : Food/Drink is ready
+    
+    ReadyForPickup --> OutForDelivery : Driver accepts
+    
+    state OutForDelivery {
+        [*] --> AtAMUMainGate
+        AtAMUMainGate --> FindingLocation : Dorm/Condo/Office
+    }
+    
+    OutForDelivery --> Delivered : Customer receives order
+    Delivered --> [*]
+    Cancelled --> [*]
+```
