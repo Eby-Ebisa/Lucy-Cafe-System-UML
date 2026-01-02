@@ -1,5 +1,5 @@
 ### 1. Lucy Cafe Food Delivery Diagram
-# Lucy Cafe AMU Delivery System
+# Lucy Cafe Food Delivery System
 
 ## 🌟 Project Introduction
 Lucy Cafe is a specialized food and drink delivery platform designed exclusively for the **Arba Minch University (AMU) Main Campus**. The system bridges the gap between the campus cafe and the university community, providing a seamless ordering experience for both students and staff.
