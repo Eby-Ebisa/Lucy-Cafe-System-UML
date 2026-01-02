@@ -187,3 +187,9 @@ CREATE TABLE Payments (
     status VARCHAR(20),
     FOREIGN KEY (orderID) REFERENCES Orders(orderID)
 );
+
+## 🚀 Getting Started
+To implement this system, follow these steps:
+1. **Database Setup**: Execute the SQL script provided in the [Database Schema](#database-schema-sql) section in your MySQL or PostgreSQL environment.
+2. **Logic Implementation**: Use the **Class Diagram** as a guide for your backend models (Java/Python/C#).
+3. **Frontend Flow**: Follow the **State Diagram** to ensure your application UI updates correctly as the order moves from 'Paid' to 'Delivered'.
