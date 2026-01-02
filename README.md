@@ -134,3 +134,56 @@ stateDiagram-v2
     Delivered --> [*]
     Cancelled --> [*]
 ```
+## 🗄️ Database Schema (SQL)
+Below is the relational database structure derived from the Class Diagram. 
+
+```sql
+-- 1. Users Table (Base for all roles)
+CREATE TABLE Users (
+    userID INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    role ENUM('Admin', 'Student', 'Instructor', 'Driver')
+);
+
+-- 2. Specific Roles
+CREATE TABLE Students (
+    userID INT PRIMARY KEY,
+    dormNumber VARCHAR(20),
+    block VARCHAR(10),
+    FOREIGN KEY (userID) REFERENCES Users(userID)
+);
+
+CREATE TABLE Instructors (
+    userID INT PRIMARY KEY,
+    condoNumber VARCHAR(20),
+    officeNumber VARCHAR(20),
+    FOREIGN KEY (userID) REFERENCES Users(userID)
+);
+
+-- 3. Menu Items (Food and Drinks)
+CREATE TABLE MenuItems (
+    itemID INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    price DECIMAL(10, 2),
+    isDrink BOOLEAN -- To enforce business logic for students
+);
+
+-- 4. Orders and Payments
+CREATE TABLE Orders (
+    orderID INT PRIMARY KEY AUTO_INCREMENT,
+    customerID INT,
+    driverID INT,
+    status VARCHAR(50),
+    totalAmount DECIMAL(10, 2),
+    FOREIGN KEY (customerID) REFERENCES Users(userID),
+    FOREIGN KEY (driverID) REFERENCES Users(userID)
+);
+
+CREATE TABLE Payments (
+    paymentID INT PRIMARY KEY AUTO_INCREMENT,
+    orderID INT,
+    method ENUM('CBE', 'Telebirr'),
+    status VARCHAR(20),
+    FOREIGN KEY (orderID) REFERENCES Orders(orderID)
+);
