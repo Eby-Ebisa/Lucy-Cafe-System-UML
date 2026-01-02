@@ -1,4 +1,6 @@
+[📖 Click here for Detailed System Documentation](./DOCUMENTATION.md)
 
+---
 # Lucy Cafe Food Delivery System
 
 ## 🌟 Project Introduction
