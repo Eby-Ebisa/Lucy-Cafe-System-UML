@@ -1,56 +1,42 @@
+### 1. Lucy Cafe Class Diagram
 ```mermaid
 classDiagram
-    %% --- CLASSES ---
+    %% --- CLASSES FOR AMU CAMPUS ---
     class User {
         +int userID
         +string name
         +login()
     }
-
     class Admin {
         +manageMenu()
         +viewReports()
-        +resolveDisputes()
     }
-
-    class Customer {
-        +string campusRole
-        +placeOrder()
-    }
-
     class Student {
         +string dormNumber
         +string block
     }
-
     class Instructor {
         +string condoNumber
         +string officeNumber
     }
-
     class Driver {
-        +string vehicleType
+        +string vehicleID
         +bool isAvailable
         +markDelivered()
     }
-
     class Order {
         +int orderID
-        +string destinationType
-        +float totalAmount
-        +checkDrinkRestriction()
+        +string locationType
+        +bool hasDrinks
     }
-
     class FoodItem {
         +string name
         +float price
     }
-
     class DrinkItem {
         +string type
         +bool isAlcoholic
     }
-
     class Payment {
         +int transactionID
         +string provider
@@ -58,36 +44,14 @@ classDiagram
         +processTelebir()
     }
 
-    %% --- RELATIONSHIPS & LOGIC ---
+    %% --- RELATIONSHIPS ---
     User <|-- Admin
-    User <|-- Customer
-    User <|-- Driver
-    Customer <|-- Student
-    Customer <|-- Instructor
-
-    Customer "1" -- "0..*" Order : places
-    Order "1" *-- "1..*" FoodItem : includes
-    Order "1" *-- "0..*" DrinkItem : includes
-    Order "1" -- "1" Payment : via CBE/Telebir
-    
-    Admin "1" -- "0..*" User : manages
-    Driver "1" -- "0..*" Order : delivers_to_AMU
-```
-
-```mermaid
-### 1. Class Diagram
-```mermaid
-classDiagram
-    class User {
-        +int userID
-        +string name
-    }
-    class Student {
-        +string dormNumber
-    }
-    class Instructor {
-        +string condoNumber
-    }
     User <|-- Student
     User <|-- Instructor
-```
+    User <|-- Driver
+    Student "1" -- "0..*" Order : orders_food_only
+    Instructor "1" -- "0..*" Order : orders_food_and_drinks
+    Order "1" *-- "1..*" FoodItem : includes
+    Order "1" *-- "0..*" DrinkItem : includes
+    Order "1" -- "1" Payment : via_CBE_Telebir
+    Driver "1" -- "0..*" Order : delivers_to_AMU
